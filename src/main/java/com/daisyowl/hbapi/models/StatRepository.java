@@ -4,6 +4,6 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.util.List;
 
-public interface StatsRepository extends MongoRepository<Stats, String> {
-  List<Stats> findByUserId(String id);
+public interface StatRepository extends MongoRepository<Stat, String> {
+  List<Stat> findByUserId(String id);
 }

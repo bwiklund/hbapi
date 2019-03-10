@@ -1,7 +1,7 @@
-package com.daisyowl.hbapi;
+package com.daisyowl.hbapi.controllers;
 
-import com.daisyowl.hbapi.models.Stats;
-import com.daisyowl.hbapi.models.StatsRepository;
+import com.daisyowl.hbapi.HBRequest;
+import com.daisyowl.hbapi.models.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,15 +20,15 @@ public class StatsApi {
   HBRequest hbRequest;
 
   @Autowired
-  private StatsRepository repository;
+  private StatRepository repository;
 
   @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-  public List<Stats> index() {
+  public List<Stat> index() {
     return repository.findAll();
   }
 
   @RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-  public void create(@RequestBody Stats stats, HttpServletRequest request) {
+  public void create(@RequestBody Stat stats, HttpServletRequest request) {
     LOGGER.info("" + hbRequest.user.username);
     repository.save(stats);
   }

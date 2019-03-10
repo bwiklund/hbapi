@@ -3,7 +3,7 @@ package com.daisyowl.hbapi.models;
 import org.springframework.data.annotation.Id;
 import java.util.List;
 
-public class Stats {
+public class Stat {
   @Id
   public String id;
 
