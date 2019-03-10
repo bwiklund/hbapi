@@ -25,7 +25,7 @@ dependencies {
   implementation "org.springframework.boot:spring-boot-dependencies:${springVersion}"
   implementation "org.springframework.boot:spring-boot-starter-web:${springVersion}"
   implementation "org.springframework.data:spring-data-mongodb:${springVersion}"
-  implementation 'com.google.guava:guava:27.0.1-jre'
+  implementation "com.google.guava:guava:27.0.1-jre"
 
   testImplementation 'junit:junit:4.12'
   testImplementation "org.springframework.boot:spring-boot-starter-test:${springVersion}"

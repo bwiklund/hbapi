@@ -8,12 +8,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/stats")
 public class StatsApi {
   private static final Logger LOGGER = LoggerFactory.getLogger(StatsApi.class);
+
+  @Autowired
+  HBRequest hbRequest;
 
   @Autowired
   private StatsRepository repository;
@@ -24,7 +28,8 @@ public class StatsApi {
   }
 
   @RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-  public void create(@RequestBody Stats stats) {
+  public void create(@RequestBody Stats stats, HttpServletRequest request) {
+    LOGGER.info("" + hbRequest.user.username);
     repository.save(stats);
   }
 }
