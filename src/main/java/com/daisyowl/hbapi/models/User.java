@@ -26,10 +26,10 @@ public class User {
     return user;
   }
 
-  public void SetPasswordFromPlaintext(String passwordPlaintext) {
+  void SetPasswordFromPlaintext(String passwordPlaintext) {
     this.passwordHash = new BCryptPasswordEncoder().encode(passwordPlaintext);
   }
-  
+
   public boolean CheckPassword(String passwordPlaintext) {
     return new BCryptPasswordEncoder().matches(passwordPlaintext, this.passwordHash);
   }
