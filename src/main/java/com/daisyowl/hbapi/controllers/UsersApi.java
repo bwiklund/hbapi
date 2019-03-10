@@ -30,12 +30,8 @@ public class UsersApi {
 
   @RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
   public User create(@RequestBody @Valid UserCreateDTO newUser ) {
-    User user = new User();
-    user.username = newUser.username;
-    user.email = newUser.email;
-
+    User user = User.fromUserCreateDTO(newUser);
     User savedUser = repository.save(user);
-
     return savedUser;
   }
 
