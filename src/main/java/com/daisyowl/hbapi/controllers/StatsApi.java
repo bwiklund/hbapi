@@ -29,7 +29,6 @@ public class StatsApi {
 
   @RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
   public void create(@RequestBody Stat stats, HttpServletRequest request) {
-    LOGGER.info("" + hbRequest.user.username);
     repository.save(stats);
   }
 }

@@ -2,4 +2,4 @@ package com.daisyowl.hbapi.models;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 
-public interface UserRepository extends MongoRepository<Stat, String> {  }
+public interface UserRepository extends MongoRepository<User, String> {  }
