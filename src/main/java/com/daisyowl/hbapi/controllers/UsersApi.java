@@ -2,7 +2,7 @@ package com.daisyowl.hbapi.controllers;
 
 import com.daisyowl.hbapi.HBRequest;
 import com.daisyowl.hbapi.models.User;
-import com.daisyowl.hbapi.models.UserCreateDTO;
+import com.daisyowl.hbapi.models.dto.UserCreateDTO;
 import com.daisyowl.hbapi.models.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;

@@ -1,6 +1,7 @@
 package com.daisyowl.hbapi.models;
 
 
+import com.daisyowl.hbapi.models.dto.UserCreateDTO;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -32,5 +33,10 @@ public class User {
 
   public boolean CheckPassword(String passwordPlaintext) {
     return new BCryptPasswordEncoder().matches(passwordPlaintext, this.passwordHash);
+  }
+
+  @Override
+  public String toString() {
+    return username + " <" + email + ">";
   }
 }

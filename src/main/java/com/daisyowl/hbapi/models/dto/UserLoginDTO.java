@@ -1,16 +1,13 @@
-package com.daisyowl.hbapi.models;
+package com.daisyowl.hbapi.models.dto;
 
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.*;
 
-public class UserCreateDTO {
+public class UserLoginDTO {
   @NotNull
   @NotBlank
   public String username;
-
-  @Email
-  public String email;
 
   @NotNull
   @NotBlank
