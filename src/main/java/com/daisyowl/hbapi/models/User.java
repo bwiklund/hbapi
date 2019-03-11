@@ -1,7 +1,6 @@
 package com.daisyowl.hbapi.models;
 
 
-import com.daisyowl.hbapi.models.dto.UserCreateDTO;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -21,15 +20,7 @@ public class User {
   @JsonIgnore
   public String passwordHash;
 
-  public static User fromUserCreateDTO(UserCreateDTO newUser) {
-    User user = new User();
-    user.username = newUser.username;
-    user.email = newUser.email;
-    user.SetPasswordFromPlaintext(newUser.password);
-    return user;
-  }
-
-  void SetPasswordFromPlaintext(String passwordPlaintext) {
+  public void SetPasswordFromPlaintext(String passwordPlaintext) {
     this.passwordHash = new BCryptPasswordEncoder().encode(passwordPlaintext);
   }
 

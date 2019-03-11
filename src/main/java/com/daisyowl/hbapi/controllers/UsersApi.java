@@ -30,8 +30,8 @@ public class UsersApi {
   }
 
   @RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-  public User create(@RequestBody @Valid UserCreateDTO newUser ) throws Exception {
-    User user = User.fromUserCreateDTO(newUser);
+  public User create(@RequestBody @Valid UserCreateDTO userDto) throws Exception {
+    User user = userDto.toUser();
 
     // we check now if the username or email is taken, because the key is not unique, so we can allow nameless temporary user accounts
     boolean usernameIsTaken = repository.findByUsername(user.username) != null;
