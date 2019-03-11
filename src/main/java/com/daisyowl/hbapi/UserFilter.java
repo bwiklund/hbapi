@@ -37,10 +37,12 @@ public class UserFilter implements Filter {
     if (authCookie != null) {
       SessionToken sessionToken = sessionTokenRepository.findByToken(authCookie.getValue());
       if (sessionToken != null) {
-        User user = userRepository.findById(sessionToken.userId).get();
-        hbRequest.user = user;
+        hbRequest.user = userRepository.findById(sessionToken.userId).get();
         LOGGER.info("Authed user: {}", hbRequest.user);
       }
+    }
+    if (hbRequest.user == null) { // if we didn't succeed at finding a user, make a new empty one to gather scores against
+      hbRequest.user = userRepository.save(new User());
     }
     chain.doFilter(request, response);
   }

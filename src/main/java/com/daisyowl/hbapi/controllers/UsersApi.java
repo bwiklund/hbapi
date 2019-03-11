@@ -2,8 +2,9 @@ package com.daisyowl.hbapi.controllers;
 
 import com.daisyowl.hbapi.HBRequest;
 import com.daisyowl.hbapi.models.User;
-import com.daisyowl.hbapi.models.dto.UserCreateDTO;
 import com.daisyowl.hbapi.models.UserRepository;
+import com.daisyowl.hbapi.models.dto.UserCreateDTO;
+import com.sun.media.sound.InvalidDataException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -29,8 +30,17 @@ public class UsersApi {
   }
 
   @RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-  public User create(@RequestBody @Valid UserCreateDTO newUser ) {
+  public User create(@RequestBody @Valid UserCreateDTO newUser ) throws Exception {
     User user = User.fromUserCreateDTO(newUser);
+
+    // we check now if the username or email is taken, because the key is not unique, so we can allow nameless temporary user accounts
+    boolean usernameIsTaken = repository.findByUsername(user.username) != null;
+    boolean emailIsTaken = repository.findByEmail(user.email) != null;
+
+    // TODO: combine all errors into one object and send that back, also define these declaratively somehow?
+    if (usernameIsTaken) throw new InvalidDataException("username is taken");
+    if (emailIsTaken) throw new InvalidDataException("email is taken");
+
     User savedUser = repository.save(user);
     return savedUser;
   }
